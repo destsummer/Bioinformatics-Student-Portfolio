@@ -1,3 +1,4 @@
+Similar to GR 1 in my repository this creates a similar genomic ranges object that looks at treated vs untreated and then plots based off reference genome.
 ```
 #load necessary libraries 
 library(airway)
