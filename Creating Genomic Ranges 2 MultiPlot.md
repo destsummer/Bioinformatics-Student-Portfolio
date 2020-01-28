@@ -1,4 +1,5 @@
 Similar to GR 1 in my repository this creates a similar genomic ranges object that looks at treated vs untreated and then plots based off reference genome.
+
 ```
 #load necessary libraries 
 library(airway)
@@ -7,9 +8,7 @@ library(Rsamtools)
 library(GenomicFeatures)
 library(GenomicAlignments)
 library(BiocParallel)
-```
 
-```
 #Specify pathway in the Airway package
 dir <- system.file("extdata",package="airway",mustWork=TRUE)
 #Verify that files saved properly 
@@ -39,26 +38,20 @@ gtffile <- "/usr/lib64/R/library/airway/extdata/Homo_sapiens.GRCh37.75_subset.gt
 (txdb <- makeTxDbFromGFF(gtffile, format="gtf", circ_seqs=character()))
 #filter txdb transcripts by gene and save as variable 
 (tbg <- transcriptsBy(txdb, by="gene"))
-```
 
-```
 #Create a GenomicRanges object with all of the reads from all of the treated samples and another one with the reads from all of the untreated samples. 
 #The samples are paired end.
 treated <- readGAlignmentPairs(bamfilestrt[[1]])
 untreated <- readGAlignmentPairs(filenamesuntrt[[1]])
 #combine all the reads together into one gr object
 comboGR <- c(treated,untreated)
-```
 
-```
 # Create or load a GenomicRanges object with the coordinates of the genes(this is already done above)
 # The transcripts work better than exons when visualizing the gene models
 gtffile <- "/usr/lib64/R/library/airway/extdata/Homo_sapiens.GRCh37.75_subset.gtf"
 (txdb <- makeTxDbFromGFF(gtffile, format="gtf", circ_seqs=character()))
 (tbg <- transcriptsBy(txdb, by="gene"))
-```
 
-```
 # Create a gr for your gene of interest.
 # Create a genomic ranges object where each row lists the coordinates of an individual base in the gene. 
 #I am using the first gene ENSG000000009724 and first transcript ENST00000400897 to make a gr for 
@@ -70,18 +63,14 @@ starts <- c(start(Example):end(Example))
 ends <- starts
 strands <- rep(strand(Example), length(starts))
 gr <- GRanges(seqnames=trans,ranges=IRanges(start=starts,end=ends),strand=strands)
-```
 
-```
 # Find the number of reads from treated and untreated samples that overlap each row in your genomic ranges object.
 #countOverlaps() or summarizeOverlaps() from GenomicRanges
 variablealn <- readGAlignments(bamfilestrt[[1]])
 counttrt <- countOverlaps(gr, variablealn, type="any", ignore.strand=FALSE)
 variablealn2 <- readGAlignments(bamfilesuntrt[[1]])
 countuntrt <- countOverlaps(gr, variablealn2, type="any", ignore.strand=FALSE)
-```
 
-```
 # Plot the normalized number of reads in each group at each base across the gene. 
 #take the overlaps table and make into a data frame
 #use the starts of the coordinates to be the x axis
@@ -97,16 +86,12 @@ ggplot(overlapsdftrt, aes(x,counttrt)) + geom_bar(stat = "Identity") + xlab('Coo
 overlapsdfuntrt <- as.data.frame(countuntrt)
 x <- starts
 ggplot(overlapsdfuntrt, aes(x,countuntrt)) + geom_bar(stat = "Identity") + xlab('Coordinates of Bases') + ylab('Untreated Counts/1M reads')
-```
 
-```
 # Plot the transcript models.
 #gr object we created earlier determines the coordinates we want to use
 #txdb pulls the transcripts from those coordinates
 ggplot() + geom_alignment(txdb, which = gr) + xlab('Coordinates of Bases') + ylab('transcript isoforms')
-```
 
-```
 # Combine the plots into a single pdf 
 #assign each of the plots a variable to make it easier for calling in the multiplot function
 
