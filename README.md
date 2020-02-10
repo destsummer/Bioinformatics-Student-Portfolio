@@ -1,4 +1,6 @@
 # Bioinformatics-Student-Portfolio
+Hello,
+My name is Destinee Morrow and this repository contains some of my work.
 This portfolio is a current work in progress, please bare with me as I work on getting it up to date. 
 End result will be a portfolio containing my projects worked on throughout my time in graduate school at Hood College 2018-2020.
 Files included are R scripts, R Markdowns, Jupyter Notebooks, SQL, PHP and TXT.
