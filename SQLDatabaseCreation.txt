@@ -1,6 +1,8 @@
-This file includes the code to create a simple database and the input information for it.
+This file includes the starting code to create a simple database and the input information for it.
 The database was created to offer beginning students in computer science a user friendly environment
 to learn about important figures in the field and their accomplishments.
+
+Final url for interactive use: http://pluto.hood.edu/~team6/project_home.php 
 
 Table input below:
 
