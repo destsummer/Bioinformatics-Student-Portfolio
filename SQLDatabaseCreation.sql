@@ -1,10 +1,10 @@
-This file includes the starting code to create a simple database and the input information for it.
-The database was created to offer beginning students in computer science a user friendly environment
-to learn about important figures in the field and their accomplishments.
+--This file includes the starting code to create a simple database and the input information for it.
+--The database was created to offer beginning students in computer science a user friendly environment
+--to learn about important figures in the field and their accomplishments.
 
-Final url for interactive use: http://pluto.hood.edu/~team6/project_home.php 
+--Final url for interactive use: http://pluto.hood.edu/~team6/project_home.php 
 
-Table input below:
+--Table input below:
 
 Drop table if exists Computer_scientist;
 Drop table if exists Schooling;
@@ -119,8 +119,8 @@ Create table Applied_to(
 	foreign key(Development_name) references Developments(Development_name),
 	foreign key(Application_name) references Applications(Application_name));
 
-Insertion of data: This method was used to ensure that would be no confusion as to what was entered into each tuple.
-Simple one line code can be used to enter all data into each table.
+--Insertion of data: This method was used to ensure that would be no confusion as to what was entered into each tuple.
+--Simple one line code can be used to enter all data into each table.
 
 insert into Computer_Scientist(CS_ID, CS_name, DOB, DOD, CS_bio) values ('0000001', 'Elon Musk', '1971-06-28', '/N’', 'Elon, form South Africa, started his career in his early 20s. Today, he is the founder of many companies that are known worldwide.' );
 insert into Computer_Scientist(CS_ID, CS_name, DOB, DOD, CS_bio) values ('0000002', 'Brendan Eich', '1961-07-04', '/N', 'Brendan is known for Javascript which is used by HTML. He is also the cofounder of an internet browser called Mozilla.' );
